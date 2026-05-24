@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun May 24 07:34:12 2026
+# Process ID         : 10182
+# Current directory  : /home/ubuntu/aws-fpga/hdk/cl/examples/ECDSA-SECP256R1-RTL/verif/sim/xsim/test_gen_pbk_sv
+# Command line       : xsim -log test_gen_pbk.log -mode tcl -source {xsim.dir/tb/xsim_script.tcl}
+# Log file           : /home/ubuntu/aws-fpga/hdk/cl/examples/ECDSA-SECP256R1-RTL/verif/sim/xsim/test_gen_pbk_sv/test_gen_pbk.log
+# Journal file       : /home/ubuntu/aws-fpga/hdk/cl/examples/ECDSA-SECP256R1-RTL/verif/sim/xsim/test_gen_pbk_sv/xsim.jou
+# Running On         : ip-172-31-63-37
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
+# CPU Frequency      : 2499.996 MHz
+# CPU Physical cores : 2
+# CPU Logical cores  : 4
+# Host memory        : 16552 MB
+# Swap memory        : 10737 MB
+# Total Virtual      : 27289 MB
+# Available Virtual  : 23603 MB
+#-----------------------------------------------------------
+source xsim.dir/tb/xsim_script.tcl
+source /home/ubuntu/aws-fpga/hdk/cl/examples/ECDSA-SECP256R1-RTL/verif/scripts/waves.tcl
