@@ -1,0 +1,11 @@
++====================+===================+=================================================================================================+
+| Launch Setup Clock | Launch Hold Clock | Pin                                                                                             |
++====================+===================+=================================================================================================+
+| clk_main_a0        | clk_main_a0       | WRAPPER/CL/SECP256R1_DUT/curve_arithmetic_instance/r_REG_FILE_reg[0][184]/D                     |
+| clk_main_a0        | clk_main_a0       | WRAPPER/CL/SECP256R1_DUT/curve_arithmetic_instance/r_REG_FILE_reg[0][199]/D                     |
+| clk_main_a0        | clk_main_a0       | WRAPPER/CL/SECP256R1_DUT/curve_arithmetic_instance/r_REG_FILE_reg[0][165]/D                     |
+| clk_main_a0        | clk_main_a0       | WRAPPER/CL/SECP256R1_DUT/curve_arithmetic_instance/r_REG_FILE_reg[0][215]/D                     |
+| clk_main_a0        | clk_main_a0       | WRAPPER/CL/SECP256R1_DUT/curve_arithmetic_instance/r_REG_FILE_reg[0][55]/D                      |
+| clk_main_a0        | clk_main_a0       | WRAPPER/CL/SECP256R1_DUT/curve_arithmetic_instance/r_REG_FILE_reg[0][45]/D                      |
+| clk_main_a0        | clk_main_a0       | WRAPPER/CL/SECP256R1_DUT/field_arithmetic_instance/modular_multiplication_instance/r_S_reg[7]/D |
++--------------------+-------------------+-------------------------------------------------------------------------------------------------+

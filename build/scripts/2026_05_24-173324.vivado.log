@@ -1,0 +1,409 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun May 24 17:33:26 2026
+# Process ID         : 81505
+# Current directory  : /home/ubuntu/aws-fpga/hdk/cl/examples/cl_demo/cl_secp256r1/build/scripts
+# Command line       : vivado -mode batch -source build_all.tcl -log 2026_05_24-173324.vivado.log -tclargs SSI_SpreadLogic_high AggressiveExplore AggressiveExplore A1 B2 C0 H2
+# Log file           : /home/ubuntu/aws-fpga/hdk/cl/examples/cl_demo/cl_secp256r1/build/scripts/2026_05_24-173324.vivado.log
+# Journal file       : /home/ubuntu/aws-fpga/hdk/cl/examples/cl_demo/cl_secp256r1/build/scripts/vivado.jou
+# Running On         : ip-172-31-21-215
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
+# CPU Frequency      : 2499.998 MHz
+# CPU Physical cores : 2
+# CPU Logical cores  : 4
+# Host memory        : 16552 MB
+# Swap memory        : 10737 MB
+# Total Virtual      : 27289 MB
+# Available Virtual  : 21403 MB
+#-----------------------------------------------------------
+source build_all.tcl
+# proc print {message} {
+#     set prefix "\nAWS FPGA: ([clock format [clock seconds] -format %T]): "
+#     append output $prefix $message "\n"
+#     puts $output
+# }
+# proc check_timing_path { {verbose 1} } {
+# 
+#   set setupPaths [get_timing_paths -max_paths 1 -slack_lesser_than 0 -setup]
+#   set holdPaths  [get_timing_paths -max_paths 1 -slack_lesser_than 0 -hold]
+# 
+#   if {$verbose>0} {
+#     print "Checking the negative slack path of the existing design"
+#   }
+# 
+#   if {[llength $setupPaths] == 0 && [llength $holdPaths] == 0} {
+#     if {$verbose>0} {
+#       print "SUCCESS: Design has no negative slack path"
+#     }
+#     return 0
+#   } else {
+#     if {$verbose>0} {
+#       print "CRITICAL WARNING: Found $setupPaths negative setup slack paths and $holdPaths negative hold slack hold paths"
+#     }
+#     return 1
+#   }
+# }
+# proc create_dir {name path {verbose 0}} {
+# 
+#     # Better to use absolute path
+#     set cur [pwd]
+#     # Check if the $path exists
+#     if {![file isdirectory $path]} {
+#         error "$path doesn't exist"
+#     }
+#     cd $path
+#     set path_abs [pwd]
+# 
+#     cd $cur
+#     # Check and create the directory if not exists
+#     if {![file isdirectory $path_abs/$name]} {
+#         file mkdir $path_abs/$name
+#         if {$verbose>0} {
+#             print "Creating new folder $path_abs/$name"
+#         }
+#     } elseif {$verbose>0} {
+#         print "Found existing folder $path_abs/$name. Folder creation skipped"
+#     }
+#     return $path_abs/$name
+# }
+# proc display_proj {} {
+#     global VIVADO_TOOL_VERSION
+#     global CL
+#     global SHELL_MODE
+#     global BUILD_FLOW
+#     global PLACE_DIRECT
+#     global PHY_OPT_DIRECT
+#     global ROUTE_DIRECT
+#     global TAG
+#     global clock_recipe_a
+#     global clock_recipe_b
+#     global clock_recipe_c
+#     global clock_recipe_hbm
+# 
+# 
+#     set rpt "
+#     ==================================================
+#     Running CL builds w/ updated build tag
+#     ==================================================
+#     vivado_tool      : $VIVADO_TOOL_VERSION
+#     cl               : $CL
+#     mode             : $SHELL_MODE
+#     clock_recipe_a   : $clock_recipe_a
+#     clock_recipe_b   : $clock_recipe_b
+#     clock_recipe_c   : $clock_recipe_c
+#     clock_recipe_hbm : $clock_recipe_hbm
+#     flow             : $BUILD_FLOW
+#     place_direct     : $PLACE_DIRECT
+#     phy_opt_direct   : $PHY_OPT_DIRECT
+#     route_direct     : $ROUTE_DIRECT
+#     build_tag        : $TAG
+#     ==================================================
+#     "
+#     puts "$rpt"
+# }
+# set PLACE_DIRECT     [lindex $argv 0]
+# set PHY_OPT_DIRECT   [lindex $argv 1]
+# set ROUTE_DIRECT     [lindex $argv 2]
+# set clock_recipe_a   [lindex $argv 3]
+# set clock_recipe_b   [lindex $argv 4]
+# set clock_recipe_c   [lindex $argv 5]
+# set clock_recipe_hbm [lindex $argv 6]
+# set DEVICE_TYPE "xcvu47p-fsvh2892-2-e"
+# if { [info exists ::env(BUILD_FLOW)] } {
+#   set BUILD_FLOW $::env(BUILD_FLOW)
+# } else {
+#   set BUILD_FLOW "BuildAll"
+# }
+# if { [info exists ::env(CL)] } {
+#   set CL $::env(CL)
+# } else {
+#   set CL "cl_dram_hbm_dma"
+# }
+# if { [info exists ::env(SHELL_MODE)] } {
+#   set SHELL_MODE $::env(SHELL_MODE)
+# } else {
+#   set SHELL_MODE "xdma_shell"
+# }
+# if { [info exists ::env(BUILD_TAG)] } {
+#   set TAG $::env(BUILD_TAG)
+# } else {
+#   set TAG "00_00_0000-999999"
+# }
+# if { [info exists ::env(HDK_SHELL_DIR)] } {
+#     set HDK_SHELL_DIR $::env(HDK_SHELL_DIR)
+# } else {
+#     print "ERROR: HDK_SHELL_DIR not set. Please run hdk_setup.sh to set required env variables."
+#     exit
+# }
+# if { [info exists ::env(HDK_SHELL_DESIGN_DIR)] } {
+#     set HDK_SHELL_DESIGN_DIR $::env(HDK_SHELL_DESIGN_DIR)
+# } else {
+#     print "ERROR: HDK_SHELL_DESIGN_DIR not set. Please run hdk_setup.sh to set required env variables."
+#     exit
+# }
+# if { [info exists ::env(HDK_COMMON_DIR)] } {
+#     set HDK_COMMON_DIR $::env(HDK_COMMON_DIR)
+# } else {
+#     print "ERROR: HDK_COMMON_DIR not set. Please run hdk_setup.sh to set required env variables."
+#     exit
+# }
+# if { [info exists ::env(HDK_IP_SRC_DIR)] } {
+#     set HDK_IP_SRC_DIR $::env(HDK_IP_SRC_DIR)
+# } else {
+#     print "ERROR: HDK_IP_SRC_DIR not set. Please run hdk_setup.sh to set required env variables."
+#     exit
+# }
+# if { [info exists ::env(HDK_BD_SRC_DIR)] } {
+#     set HDK_BD_SRC_DIR $::env(HDK_BD_SRC_DIR)
+# } else {
+#     print "ERROR: HDK_BD_SRC_DIR not set. Please run hdk_setup.sh to set required env variables."
+#     exit
+# }
+# if { [info exists ::env(HDK_BD_GEN_DIR)] } {
+#     set HDK_BD_GEN_DIR $::env(HDK_BD_GEN_DIR)
+# } else {
+#     print "ERROR: HDK_BD_GEN_DIR not set. Please run hdk_setup.sh to set required env variables."
+#     exit
+# }
+# if { [info exists ::env(CL_DIR)] } {
+#     set CL_DIR $::env(CL_DIR)
+# } else {
+#     print "ERROR: CL_DIR not set. Please run hdk_setup.sh to set required env variables."
+#     exit
+# }
+# if { [info exists ::env(VIVADO_TOOL_VERSION)] } {
+#     set VIVADO_TOOL_VERSION $::env(VIVADO_TOOL_VERSION)
+# } else {
+#     print "ERROR: VIVADO_TOOL_VERSION not set. Please run hdk_setup.sh to set required env variables."
+#     exit
+# }
+# if { [info exists ::env(ENCRYPT)] } {
+#     set ENCRYPT $::env(ENCRYPT)
+# } else {
+#     set ENCRYPT 1
+# }
+# display_proj
+
+    ==================================================
+    Running CL builds w/ updated build tag
+    ==================================================
+    vivado_tool      : 2025.2
+    cl               : cl_secp256r1
+    mode             : small_shell
+    clock_recipe_a   : A1
+    clock_recipe_b   : B2
+    clock_recipe_c   : C0
+    clock_recipe_hbm : H2
+    flow             : BuildAll
+    place_direct     : SSI_SpreadLogic_high
+    phy_opt_direct   : AggressiveExplore
+    route_direct     : AggressiveExplore
+    build_tag        : 2026_05_24-173324
+    ==================================================
+    
+# set scripts_dir [pwd]
+# set build_dir [file dirname $scripts_dir]
+# create_dir "reports"              $build_dir
+# create_dir "checkpoints"          $build_dir
+# create_dir "src_post_encryption"  $build_dir
+# set design_dir       "${CL_DIR}/design"
+# set constraints_dir  "${build_dir}/constraints"
+# set reports_dir      "${build_dir}/reports"
+# set checkpoints_dir  "${build_dir}/checkpoints"
+# set reports_dir      "${build_dir}/reports"
+# set src_post_enc_dir "${build_dir}/src_post_encryption"
+# cd $scripts_dir
+# print "Generating clock contraints for CL source clocks"
+
+AWS FPGA: (17:33:30): Generating clock contraints for CL source clocks
+
+# source $HDK_SHELL_DIR/build/scripts/aws_gen_clk_constraints.tcl
+## switch $clock_recipe_a {
+##     "A0" {
+##         #NOT SUPPORTED# set clk_main_a0_period        8
+##         #NOT SUPPORTED# set clk_main_a0_half_period   4
+##         set clk_main_a0_period        4
+##         set clk_main_a0_half_period   2
+##         set clk_extra_a1_period      16
+##         set clk_extra_a1_half_period  8
+##         set clk_extra_a2_period       5.333
+##         set clk_extra_a2_half_period  2.667
+##         set clk_extra_a3_period       4
+##         set clk_extra_a3_half_period  2
+##     }
+##     "A1" {
+##         set clk_main_a0_period        4
+##         set clk_main_a0_half_period   2
+##         set clk_extra_a1_period       8
+##         set clk_extra_a1_half_period  4
+##         set clk_extra_a2_period       2.667
+##         set clk_extra_a2_half_period  1.333
+##         set clk_extra_a3_period       2
+##         set clk_extra_a3_half_period  1
+##     }
+##     "A2" {
+##         #NOT SUPPORTED# set clk_main_a0_period        64
+##         #NOT SUPPORTED# set clk_main_a0_half_period   32
+##         set clk_main_a0_period         4
+##         set clk_main_a0_half_period    2
+##         set clk_extra_a1_period      128
+##         set clk_extra_a1_half_period  64
+##         set clk_extra_a2_period        8
+##         set clk_extra_a2_half_period   4
+##         set clk_extra_a3_period       16
+##         set clk_extra_a3_half_period   8
+##     }
+##     default {
+##         puts "$clock_recipe_a is NOT a valid clock_recipe_a."
+##     }
+## }
+## switch $clock_recipe_b {
+##     "B0" {
+##         set clk_extra_b0_period       4
+##         set clk_extra_b0_half_period  2
+##         set clk_extra_b1_period       8
+##         set clk_extra_b1_half_period  4
+##     }
+##     "B1" {
+##         set clk_extra_b0_period       8
+##         set clk_extra_b0_half_period  4
+##         set clk_extra_b1_period      16
+##         set clk_extra_b1_half_period  8
+##     }
+##     "B2" {
+##         set clk_extra_b0_period       2.222
+##         set clk_extra_b0_half_period  1.111
+##         set clk_extra_b1_period       4.444
+##         set clk_extra_b1_half_period  2.222
+##     }
+##     "B3" {
+##         set clk_extra_b0_period       4
+##         set clk_extra_b0_half_period  2
+##         set clk_extra_b1_period      16
+##         set clk_extra_b1_half_period  8
+##     }
+##     "B4" {
+##         set clk_extra_b0_period       3.333
+##         set clk_extra_b0_half_period  1.667
+##         set clk_extra_b1_period      13.333
+##         set clk_extra_b1_half_period  6.667
+##     }
+##     "B5" {
+##         set clk_extra_b0_period       2.5
+##         set clk_extra_b0_half_period  1.25
+##         set clk_extra_b1_period      10
+##         set clk_extra_b1_half_period  5
+##     }
+##     default {
+##         puts "$clock_recipe_b is NOT a valid clock_recipe_b."
+##     }
+## }
+## switch $clock_recipe_c {
+##     "C0" {
+##         set clk_extra_c0_period       3.333
+##         set clk_extra_c0_half_period  1.667
+##         set clk_extra_c1_period       2.5
+##         set clk_extra_c1_half_period  1.25
+##     }
+##     "C1" {
+##         set clk_extra_c0_period       6.667
+##         set clk_extra_c0_half_period  3.333
+##         set clk_extra_c1_period       5
+##         set clk_extra_c1_half_period  2.5
+##     }
+##     "C2" {
+##         set clk_extra_c0_period      13.333
+##         set clk_extra_c0_half_period  6.667
+##         set clk_extra_c1_period      10
+##         set clk_extra_c1_half_period  5
+##     }
+##     "C3" {
+##         set clk_extra_c0_period       5
+##         set clk_extra_c0_half_period  2.5
+##         set clk_extra_c1_period       3.75
+##         set clk_extra_c1_half_period  1.875
+##     }
+##     default {
+##         puts "$clock_recipe_c is NOT a valid clock_recipe_c."
+##     }
+## }
+## switch $clock_recipe_hbm {
+##     "H0" {
+##         set clk_hbm_axi_period       4
+##         set clk_hbm_axi_half_period  2
+##     }
+##     "H1" {
+##         set clk_hbm_axi_period       8
+##         set clk_hbm_axi_half_period  4
+##     }
+##     "H2" {
+##         set clk_hbm_axi_period       2.222
+##         set clk_hbm_axi_half_period  1.111
+##     }
+##     "H3" {
+##         set clk_hbm_axi_period       3.333
+##         set clk_hbm_axi_half_period  1.667
+##     }
+##     "H4" {
+##         set clk_hbm_axi_period       2.5
+##         set clk_hbm_axi_half_period  1.25
+##     }
+##     default {
+##         puts "$clock_recipe_hbm is NOT a valid clock_recipe_hbm."
+##     }
+## }
+## set pin_clk_extra_a1 "\[get_pins -of_objects \[get_cells -hierarchical -regexp .*AWS_CLK_GEN/CLK_GRP_A_EN_I.CLK_MMCM_A_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst\] -filter {NAME=~*CLKOUT0}\]"
+## set pin_clk_extra_a2 "\[get_pins -of_objects \[get_cells -hierarchical -regexp .*AWS_CLK_GEN/CLK_GRP_A_EN_I.CLK_MMCM_A_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst\] -filter {NAME=~*CLKOUT1}\]"
+## set pin_clk_extra_a3 "\[get_pins -of_objects \[get_cells -hierarchical -regexp .*AWS_CLK_GEN/CLK_GRP_A_EN_I.CLK_MMCM_A_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst\] -filter {NAME=~*CLKOUT2}\]"
+## set pin_clk_extra_b0 "\[get_pins -of_objects \[get_cells -hierarchical -regexp .*AWS_CLK_GEN/CLK_GRP_B_EN_I.CLK_MMCM_B_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst\] -filter {NAME=~*CLKOUT0}\]"
+## set pin_clk_extra_b1 "\[get_pins -of_objects \[get_cells -hierarchical -regexp .*AWS_CLK_GEN/CLK_GRP_B_EN_I.CLK_MMCM_B_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst\] -filter {NAME=~*CLKOUT1}\]"
+## set pin_clk_extra_c0 "\[get_pins -of_objects \[get_cells -hierarchical -regexp .*AWS_CLK_GEN/CLK_GRP_C_EN_I.CLK_MMCM_C_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst\] -filter {NAME=~*CLKOUT0}\]"
+## set pin_clk_extra_c1 "\[get_pins -of_objects \[get_cells -hierarchical -regexp .*AWS_CLK_GEN/CLK_GRP_C_EN_I.CLK_MMCM_C_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst\] -filter {NAME=~*CLKOUT1}\]"
+## set pin_clk_hbm_axi  "\[get_pins -of_objects \[get_cells -hierarchical -regexp .*AWS_CLK_GEN/CLK_HBM_EN_I.CLK_MMCM_HBM_I/inst/CLK_CORE_DRP_I/clk_inst/mmcme4_adv_inst\] -filter {NAME=~*CLKOUT0}\]"
+## if { [file exists $CL_DIR/build/constraints/generated_cl_clocks_aws.xdc] } {
+##     puts "Deleting old CL clocks constraints file since it will be replaced.";
+##     file delete -force $CL_DIR/build/constraints/generated_cl_clocks_aws.xdc
+## }
+## set clocks_file [open "$CL_DIR/build/constraints/generated_cl_clocks_aws.xdc" w]
+## puts $clocks_file "#-------------------------------------------------------------------------"
+## puts $clocks_file "# Do not edit this file! It is auto-generated from $argv0."
+## puts $clocks_file "#-------------------------------------------------------------------------"
+## puts $clocks_file "###############################################################################                          "
+## puts $clocks_file "# OOC Source Clocks                                                                                      "
+## puts $clocks_file "###############################################################################                          "
+## puts $clocks_file "#CL HBM reference clock @100MHz                                                                          "
+## puts $clocks_file "create_clock -period 10.000 -name clk_hbm_ref  -waveform {0.000 5.000} \[get_ports clk_hbm_ref\]       \n"
+## puts $clocks_file "# Group A Clocks"
+## puts $clocks_file "create_clock -period $clk_main_a0_period  -name clk_main_a0 -waveform {0.000 $clk_main_a0_half_period}  \[get_ports clk_main_a0\]"
+## close $clocks_file
+# print "Checking for source code encryption"
+
+AWS FPGA: (17:33:30): Checking for source code encryption
+
+# source encrypt.tcl
+## if {[llength [glob -nocomplain -dir $src_post_enc_dir *]] != 0} {
+##   eval file delete -force [glob $src_post_enc_dir/*]
+## }
+## set UNUSED_TEMPLATES_DIR $HDK_SHELL_DESIGN_DIR/interfaces
+## file copy -force $UNUSED_TEMPLATES_DIR/unused_flr_template.inc        $src_post_enc_dir
+## file copy -force $UNUSED_TEMPLATES_DIR/unused_ddr_template.inc        $src_post_enc_dir
+## file copy -force $UNUSED_TEMPLATES_DIR/unused_cl_sda_template.inc     $src_post_enc_dir
+## file copy -force $UNUSED_TEMPLATES_DIR/unused_apppf_irq_template.inc  $src_post_enc_dir
+## file copy -force $UNUSED_TEMPLATES_DIR/unused_dma_pcis_template.inc   $src_post_enc_dir
+## file copy -force $UNUSED_TEMPLATES_DIR/unused_pcim_template.inc       $src_post_enc_dir
+## file copy -force $CL_DIR/design/cl_id_defines.vh                      $src_post_enc_dir
+## file copy -force $CL_DIR/design/cl_axil_reg_access_defines.vh         $src_post_enc_dir
+error copying "/home/ubuntu/aws-fpga/hdk/cl/examples/cl_demo/cl_secp256r1/design/cl_axil_reg_access_defines.vh": no such file or directory
+    while executing
+"file copy -force $CL_DIR/design/cl_axil_reg_access_defines.vh         $src_post_enc_dir"
+    (file "encrypt.tcl" line 35)
+
+    while executing
+"source encrypt.tcl"
+    (file "build_all.tcl" line 262)
+INFO: [Common 17-206] Exiting Vivado at Sun May 24 17:33:30 2026...

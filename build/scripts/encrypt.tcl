@@ -32,8 +32,15 @@ file copy -force $UNUSED_TEMPLATES_DIR/unused_dma_pcis_template.inc   $src_post_
 file copy -force $UNUSED_TEMPLATES_DIR/unused_pcim_template.inc       $src_post_enc_dir
 
 file copy -force $CL_DIR/design/cl_id_defines.vh                      $src_post_enc_dir
-file copy -force $CL_DIR/design/cl_axil_reg_access_defines.vh         $src_post_enc_dir
-file copy -force $CL_DIR/design/cl_axil_reg_access.sv                 $src_post_enc_dir
+file copy -force $CL_DIR/design/cl_secp256r1_defines.vh               $src_post_enc_dir
+file copy -force $CL_DIR/design/cl_secp256r1.sv                       $src_post_enc_dir
+file copy -force $CL_DIR/design/SECP256R1.sv                          $src_post_enc_dir
+file copy -force $CL_DIR/design/CURVE_ARITHMETIC.sv                   $src_post_enc_dir
+file copy -force $CL_DIR/design/FIELD_ARITHMETIC.sv                   $src_post_enc_dir
+file copy -force $CL_DIR/design/MODULAR_ADDITION.sv                   $src_post_enc_dir
+file copy -force $CL_DIR/design/MODULAR_SUBTRACTION.sv                $src_post_enc_dir
+file copy -force $CL_DIR/design/MODULAR_MULTIPLICATION.sv             $src_post_enc_dir
+file copy -force $CL_DIR/design/MODULAR_INVERSE.sv                    $src_post_enc_dir
 
 #---- End of section replaced by Developer ---
 

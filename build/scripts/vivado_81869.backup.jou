@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sun May 24 17:45:34 2026
+# Process ID         : 81869
+# Current directory  : /home/ubuntu/aws-fpga/hdk/cl/examples/cl_demo/cl_secp256r1/build/scripts
+# Command line       : vivado -mode batch -source build_all.tcl -log 2026_05_24-174532.vivado.log -tclargs SSI_SpreadLogic_high AggressiveExplore AggressiveExplore A1 B2 C0 H2
+# Log file           : /home/ubuntu/aws-fpga/hdk/cl/examples/cl_demo/cl_secp256r1/build/scripts/2026_05_24-174532.vivado.log
+# Journal file       : /home/ubuntu/aws-fpga/hdk/cl/examples/cl_demo/cl_secp256r1/build/scripts/vivado.jou
+# Running On         : ip-172-31-21-215
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
+# CPU Frequency      : 2499.998 MHz
+# CPU Physical cores : 2
+# CPU Logical cores  : 4
+# Host memory        : 16552 MB
+# Swap memory        : 10737 MB
+# Total Virtual      : 27289 MB
+# Available Virtual  : 21334 MB
+#-----------------------------------------------------------
+source build_all.tcl
